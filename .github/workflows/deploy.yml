@@ -1,4 +1,4 @@
-name: Build React Vite App
+name: Build Frontend
 
 on:
   push:
@@ -7,6 +7,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: frontend
 
     steps:
       - name: Checkout Code
@@ -19,14 +23,7 @@ jobs:
           cache: npm
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build React Vite Application
+      - name: Build
         run: npm run build
-
-      - name: Success Check
-        run: |
-          echo "========================================="
-          echo " 🎉 SUCCESS: The project built cleanly!"
-          echo " Ready for production deployment. 🎉"
-          echo "========================================="
